@@ -1,0 +1,12 @@
+Build a web app called "ScrapToLife" — a verified student-to-student marketplace for campus hardware, components, and academic tools. Use React (Vite) for the frontend with a clean, modern eco-tech aesthetic: deep forest green (#1D3B2A) and warm copper/rust (#B5651D) accents on a warm off-white background (#F5F1E8), Fraunces for headings and Space Grotesk for body text (Google Fonts).
+
+Layout: a fixed left sidebar with the ScrapToLife logo/name at top, then nav items — Marketplace, AI Scanner, WANTED Board, Deconstruction Kits, Impact Tracker — each switching the main content area without a page reload. Show a small verified-student avatar/badge at the bottom of the sidebar. Sidebar collapses to a hamburger menu on mobile.
+
+Pages/sections:
+1. Marketplace: a responsive grid of listing cards (component icon/thumbnail, name, price, seller's branch + verification badge, condition note). Include 6 sample listings (ESP32 board, ultrasonic sensors, a full robot kit, a drafter set, a motor driver, a calculator).
+2. AI Scanner: an upload/dropzone area. On click, simulate a short loading state ("Reading component markings...") then reveal a result card with detected part name, category, voltage, pin count, and a suggested price, plus a "Confirm & Publish" button. Pick from a small hardcoded array of sample components (ESP32-WROOM-32, ATmega328P, HC-SR04, L298N) at random for the demo — no real API call needed yet.
+3. WANTED Board: a list of request cards (item needed, urgency/deadline, budget). Include a "+ Post a request" button that adds a new placeholder card to the top of the list.
+4. Deconstruction Kits: cards showing a full project (e.g. "Smart Irrigation System") with its full-kit price, and a breakdown list of individual parts with their own prices.
+5. Impact Tracker: 3 stat cards showing total rupees recirculated, kg of e-waste diverted, and number of verified trades completed this semester (use sample numbers).
+
+Use functional React components with useState for view switching and interactivity, no backend or database needed — everything runs on local mock data arrays. Make it fully responsive down to mobile, with hover states on cards and buttons. Keep the tone practical and student-facing, not corporate.

@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "ScrapToLife"
+description = "A verified student-to-student marketplace for campus hardware, components, and academic tools, with an AI component scanner, WANTED board, deconstruction kits, and impact tracking."
+version = "1.0.0"
+id = "artifacts/scrap-to-life"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21739
+
+[services.development]
+run = "pnpm --filter @workspace/scrap-to-life run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/scrap-to-life", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/scrap-to-life/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21739"
+BASE_PATH = "/"

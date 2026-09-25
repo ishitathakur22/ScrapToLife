@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-mono: var(--app-font-mono);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+}
+
+:root {
+  --background: 39 32% 94%;
+  --foreground: 150 22% 17%;
+  --border: 34 19% 82%;
+  --input: 34 19% 82%;
+  --ring: 24 55% 41%;
+  --card: 39 38% 97%;
+  --card-foreground: 150 22% 17%;
+  --primary: 147 35% 17%;
+  --primary-foreground: 39 38% 97%;
+  --secondary: 31 67% 41%;
+  --secondary-foreground: 39 38% 97%;
+  --muted: 38 20% 89%;
+  --muted-foreground: 150 10% 38%;
+  --accent: 80 28% 73%;
+  --accent-foreground: 147 35% 17%;
+  --app-font-sans: 'Space Grotesk', sans-serif;
+  --app-font-serif: 'Fraunces', serif;
+  --app-font-mono: 'Space Grotesk', sans-serif;
+  --radius: 0.8rem;
+  --shadow-sm: 0 2px 10px rgba(29,59,42,.06);
+  --shadow-md: 0 12px 26px rgba(29,59,42,.10);
+}
+
+.dark {
+  --background: 147 35% 10%;
+  --foreground: 39 38% 97%;
+  --border: 147 15% 25%;
+  --input: 147 15% 25%;
+  --ring: 31 67% 50%;
+  --card: 147 27% 14%;
+  --card-foreground: 39 38% 97%;
+  --primary: 80 28% 73%;
+  --primary-foreground: 147 35% 17%;
+  --secondary: 31 67% 50%;
+  --secondary-foreground: 39 38% 97%;
+  --muted: 147 20% 20%;
+  --muted-foreground: 39 15% 68%;
+  --accent: 147 18% 26%;
+  --accent-foreground: 80 28% 73%;
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    min-width: 320px;
+  }
+  button, input { font: inherit; }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-ring {
+  0%, 100% { opacity: .45; transform: scale(.94); }
+  50% { opacity: .12; transform: scale(1.06); }
+}
+@keyframes scan-line {
+  0% { transform: translateY(-38px); opacity: 0; }
+  25%, 75% { opacity: 1; }
+  100% { transform: translateY(38px); opacity: 0; }
+}
+
+.animate-rise { animation: rise-in .45s cubic-bezier(.2,.7,.2,1) both; }
+.animate-pulse-ring { animation: pulse-ring 2.6s ease-in-out infinite; }
+.scan-line { animation: scan-line 1.4s ease-in-out infinite; }
+.serif { font-family: var(--app-font-serif); }
+.text-balance { text-wrap: balance; }
+
+.grain::after {
+  content: '';
+  position: fixed;
+  pointer-events: none;
+  z-index: 30;
+  inset: 0;
+  opacity: .032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E");
+}
+
+.card-lift { transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+.card-lift:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: hsl(var(--secondary) / .45); }
+.press { transition: transform .14s ease, background-color .14s ease; }
+.press:active { transform: translateY(1px) scale(.99); }
+.focus-ring:focus-visible { outline: 3px solid hsl(var(--secondary) / .32); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
